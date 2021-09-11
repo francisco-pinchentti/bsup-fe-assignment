@@ -34,7 +34,7 @@ class FilterDropdown extends Component {
                 <DropdownToggle>
                     {this.getLabel()}
                 </DropdownToggle>
-                <DropdownMenu>
+                <DropdownMenu container="body">
                     {this.props.options.map(o => <DropdownItem key={'option-' + o.id} onClick={() =>this.onOptionSelect(o)}>{o.description}</DropdownItem>)}
                 </DropdownMenu>
             </Dropdown>

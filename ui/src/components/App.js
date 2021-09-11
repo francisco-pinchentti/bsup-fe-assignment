@@ -8,7 +8,7 @@ import DetailModal from './DetailModal';
 
 const TIME_FRAME_FILTER_OPTIONS = [
   { id: 1, description: 'Last 7 days', value: moment().subtract(7, 'd').format('YYYY-MM-DD') },
-  { id: 2, description: 'Last 30 days', value: moment().subtract(30, 'd').format('YYYY-MM-DD') },
+  { id: 2, description: 'Last month', value: moment().subtract(1, 'months').format('YYYY-MM-DD') },
   { id: 3, description: 'All', value: null }
 ];
 
@@ -64,7 +64,7 @@ class App extends Component {
 
         <div className="d-flex p-2" style={{ overflow: 'hidden', height: 'calc(100% - 64px)'}}>
           <form style={{ width: '200px'}}>
-            <label for="regF">Filter by region:</label>
+            <label htmlFor="regF">Filter by region:</label>
             <FilterDropdown
               id="regF"
               options={this.props.regionFilterOptions}
@@ -72,7 +72,7 @@ class App extends Component {
               onSelect={(o) => this.onRegionFilterChange(o)}
             ></FilterDropdown>
 
-            <label for="refTFF">Filter by time:</label>
+            <label htmlFor="refTFF">Filter by time:</label>
             <FilterDropdown
               id="refTFF"
               options={TIME_FRAME_FILTER_OPTIONS}

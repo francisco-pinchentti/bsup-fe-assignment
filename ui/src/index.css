@@ -12,7 +12,7 @@ main {
     flex-direction: column;
 }
 
-.dropdown .dropdown-menu {
+.dropdown-menu {
     max-height: 500px;
     overflow-y: auto;
     z-index: 1000;
