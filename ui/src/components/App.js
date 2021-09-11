@@ -53,9 +53,35 @@ class App extends Component {
 
   render() {
     return (
-      <main>
+      <main className="p-2">
 
-        <h1>COVID Historigram</h1>
+        <header className="d-flex" style={{'flexDirection': 'row'}}>
+
+          <h1>
+            COVID Historigram
+          </h1>
+          <form className="d-flex justify-content-evenly" style={{flexGrow: 1}}>
+            <div className="d-flex align-items-center" style={{ minWidth: '200px'}}>
+              <label style={{ marginRight: '0.5rem' }} htmlFor="regF">Filter by region:</label>
+              <FilterDropdown
+                id="regF"
+                options={this.props.regionFilterOptions}
+                initialValue={{ id: 'all', description: 'All' }}
+                onSelect={(o) => this.onRegionFilterChange(o)}
+              ></FilterDropdown>
+            </div>
+            <div className="d-flex align-items-center" style={{ minWidth: '200px'}}>
+              <label style={{marginRight: '0.5rem'}} htmlFor="refTFF">Filter by time:</label>
+              <FilterDropdown
+                id="refTFF"
+                options={TIME_FRAME_FILTER_OPTIONS}
+                initialValue={TIME_FRAME_FILTER_OPTIONS[0]}
+                onSelect={(o) => this.onTimeFilterChange(o)}
+              ></FilterDropdown>
+            </div>
+          </form>
+
+        </header>
 
         <DetailModal
           onToggle={() => this.hideDetail()}
@@ -63,23 +89,7 @@ class App extends Component {
           detail={this.props.detail} />
 
         <div className="d-flex p-2" style={{ overflow: 'hidden', height: 'calc(100% - 64px)'}}>
-          <form style={{ width: '200px'}}>
-            <label htmlFor="regF">Filter by region:</label>
-            <FilterDropdown
-              id="regF"
-              options={this.props.regionFilterOptions}
-              initialValue={{id: 'all', description: 'All'}}
-              onSelect={(o) => this.onRegionFilterChange(o)}
-            ></FilterDropdown>
 
-            <label htmlFor="refTFF">Filter by time:</label>
-            <FilterDropdown
-              id="refTFF"
-              options={TIME_FRAME_FILTER_OPTIONS}
-              initialValue={TIME_FRAME_FILTER_OPTIONS[0]}
-              onSelect={(o) => this.onTimeFilterChange(o)}
-            ></FilterDropdown>
-          </form>
           <section style={{flexGrow: 1}}>
             <CasesChart data={this.props.chartData} onDatapointClick={(date) => this.updateDetail(date)}></CasesChart>
           </section>
